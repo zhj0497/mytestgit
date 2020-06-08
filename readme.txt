@@ -8,3 +8,14 @@ spring相关的知识点:
 http://www.tianxiaobo.com/
 活在梦里
 https://www.cnblogs.com/micrari
+
+redis的并非处理
+while(jedis.setnx(lock, now+超时时间)==0）{
+    if(now>jedis.get(lock) && now>jedis.getset(lock, now+超时时间)){
+        break;
+    }else{
+        Thread.sleep(300);
+    }
+}
+执行业务代码;
+jedis.del(lock);
