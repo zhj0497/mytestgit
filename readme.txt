@@ -26,3 +26,6 @@ jedis.del(lock);
 jps -l
 --运行时的参数
 jinfo -flags pid
+
+--分组
+knowledgeV2MappingVoList.stream().collect(Collectors.groupingBy(KnowledgeV2MappingVo::getKid,Collectors.mapping(KnowledgeV2MappingVo::getCode,Collectors.toSet())));
