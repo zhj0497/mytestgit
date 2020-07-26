@@ -2,3 +2,7 @@ git和svn的区别:
 1。存储方式的不一样，git是类型key / val数据库的存储，svn存储的是文件，文件名有版本号.
 git hash-object -w readme.txt --得到文件的哈希值
 git cat-file -p hksfjlskkk --通过哈希值得到文件的内容
+2.使用方式不一样:提交git需要add commit,push 等步骤,svn只有commit
+git文件的转换方式: 
+workspace文件->(add)-->local cache->(add)-local repository->(commit)-->remote repository->(clone)-->git repository->(check out)->workspace文件
+3.管理模式不一样,git 分布式,svn集中式 本地仓库支持提交，回滚等操作。
