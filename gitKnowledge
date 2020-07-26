@@ -1,0 +1,4 @@
+git和svn的区别:
+1。存储方式的不一样，git是类型key / val数据库的存储，svn存储的是文件，文件名有版本号.
+git hash-object -w readme.txt --得到文件的哈希值
+git cat-file -p hksfjlskkk --通过哈希值得到文件的内容
