@@ -1,0 +1,48 @@
+Profile的意思是配置，对于应用程序来说，不同的环境需要不同的配置
+1.用于bean中
+@Component
+@Profile("dev")
+public class DevDatasourceConfig
+2.启动参数配置:
+java -jar application.jar -Dspring.profiles.active=dev
+3.环境变量配置：
+export spring_profiles_active=dev
+4.application.properties配置文件：
+spring.profiles.active=dev
+5.单元测试配置：
+@ActiveProfiles("test")
+public void ApiTest{
+  ...
+}
+6.mvn文件配置,并动态加载配置有两步:
+	a.pom.xml配置
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+	b.applcation.properties配置
+	spring.profiles.active=@spring.profiles.active@
+
+
+Maven profile与配置文件的方式相同，环境变量以及JVM启动参数会覆盖配置文件的内容
